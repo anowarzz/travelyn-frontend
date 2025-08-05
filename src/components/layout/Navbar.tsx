@@ -23,7 +23,7 @@ const navigationLinks = [
 const Navbar = () => {
   return (
     <header className="border-b px-4 md:px-6 py-2">
-      <div className="flex h-16 items-center justify-between gap-4">
+      <div className="flex px-4 container mx-auto h-16 items-center justify-between gap-4">
         {/* Left side */}
         <div className="flex items-center gap-2">
           {/* Mobile menu trigger */}
@@ -81,7 +81,7 @@ const Navbar = () => {
           </Popover>
           {/* Main nav */}
           <div className="flex items-center gap-6">
-            <a href="#" className="text-primary hover:text-primary/90">
+            <a href="/" className="text-primary hover:text-primary/90">
               <Logo />
             </a>
             {/* Navigation menu */}

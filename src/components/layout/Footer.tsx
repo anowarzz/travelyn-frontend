@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="relative text-white bg-[#f8fafc]">
+    <footer className="relative text-foreground bg-[#f8fafc]">
       <div
         className="absolute inset-0 bg-[radial-gradient(#0000001a_1px,#f8fafc_1px)] bg-[size:16px_16px] pointer-events-none"
         aria-hidden="true"
       ></div>
-      <div className="relative mx-auto max-w-screen-xl space-y-10 px-4 py-14 sm:px-6 lg:space-y-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+      <div className="relative mx-auto max-w-screen-xl space-y-10 px-4 py-8 sm:px-6 lg:space-y-16 lg:px-4">
+        <div className="grid grid-cols-1 gap-10   lg:grid-cols-3">
           <div>
             <div className="flex items-center gap-3">
               <img
@@ -18,7 +18,7 @@ const Footer = () => {
                 className="w-48 h-auto drop-shadow-md"
               />
             </div>
-            <p className="mt-4 max-w-xs text-gray-700/90 font-medium ">
+            <p className="mt-4 max-w-xs text-muted-foreground">
               Explore, dream, and discover with{" "}
               <span className="font-bold text-cyan-700">Travelyn</span>.<br />
               We offer curated tours, expert guides, and seamless booking for
@@ -28,7 +28,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-gray-700 hover:text-cyan-500 transition-colors"
+                  className="text-foreground hover:text-cyan-500 transition-colors"
                 >
                   <span className="sr-only">Facebook</span>
 
@@ -50,7 +50,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-gray-700 hover:text-cyan-500 transition-colors"
+                  className="text-foreground hover:text-cyan-500 transition-colors"
                 >
                   <span className="sr-only">Instagram</span>
 
@@ -72,7 +72,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-gray-700 hover:text-cyan-500 transition-colors"
+                  className="text-foreground hover:text-cyan-500 transition-colors"
                 >
                   <span className="sr-only">Twitter</span>
 
@@ -90,7 +90,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-gray-700 hover:text-cyan-500 transition-colors"
+                  className="text-foreground hover:text-cyan-500 transition-colors"
                 >
                   <span className="sr-only">GitHub</span>
 
@@ -110,7 +110,10 @@ const Footer = () => {
               </li>
 
               <li>
-                <a href="/" className="hover:text-cyan-300 transition-colors">
+                <a
+                  href="/"
+                  className="text-foreground hover:text-cyan-300 transition-colors"
+                >
                   <span className="sr-only">Dribbble</span>
 
                   <svg
@@ -132,7 +135,7 @@ const Footer = () => {
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
             <div>
-              <p className="font-bold text-base text-gray-800 mb-2 ">
+              <p className="font-bold text-base text-foreground mb-2 ">
                 Popular Tours
               </p>
               <ul className="space-y-3 text-sm">
@@ -179,7 +182,9 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <p className="font-bold text-base text-gray-800 mb-2 ">Company</p>
+              <p className="font-bold text-base text-foreground mb-2 ">
+                Company
+              </p>
               <ul className="space-y-3 text-sm">
                 <li>
                   <Link
@@ -208,7 +213,7 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <p className="font-bold text-base text-gray-800 mb-2 ">
+              <p className="font-bold text-base text-foreground mb-2 ">
                 Helpful Links
               </p>
               <ul className="space-y-3 text-sm">
@@ -247,14 +252,14 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <p className="font-bold text-base text-gray-800 mb-2 ">
+              <p className="font-bold text-base text-foreground mb-2 ">
                 Legal & Info
               </p>
               <ul className="space-y-3 text-sm">
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-foreground hover:text-cyan-600 transition-colors"
                   >
                     Terms & Conditions
                   </Link>
@@ -288,8 +293,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/20 pt-6 text-center">
-          <p className="text-xs text-gray-700/80 font-medium">
+        <div className="border-t border-white/20  text-center">
+          <p className="text-xs text-foreground font-medium">
             &copy; {new Date().getFullYear()}{" "}
             <span className="font-bold text-cyan-700">Travelyn</span>. All
             rights reserved.
