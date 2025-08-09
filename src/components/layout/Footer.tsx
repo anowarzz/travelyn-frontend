@@ -3,9 +3,15 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="relative text-foreground bg-[#f8fafc]">
+    <footer className="relative text-foreground bg-[#f8fafc] dark:bg-[#0f172a]">
+      {/* Light mode pattern */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(#0000001a_1px,#f8fafc_1px)] bg-[size:16px_16px] pointer-events-none"
+        className="absolute inset-0 bg-[radial-gradient(#0000001a_1px,#f8fafc_1px)] bg-[size:16px_16px] pointer-events-none dark:hidden"
+        aria-hidden="true"
+      ></div>
+      {/* Dark mode pattern */}
+      <div
+        className="absolute inset-0 hidden dark:block bg-[radial-gradient(#ffffff0d_1px,#0f172a_1px)] bg-[size:16px_16px] pointer-events-none"
         aria-hidden="true"
       ></div>
       <div className="relative mx-auto max-w-screen-xl space-y-10 px-4 py-8 sm:px-6 lg:space-y-16 lg:px-4">
@@ -20,7 +26,10 @@ const Footer = () => {
             </div>
             <p className="mt-4 max-w-xs text-muted-foreground">
               Explore, dream, and discover with{" "}
-              <span className="font-bold text-cyan-700">Travelyn</span>.<br />
+              <span className="font-bold text-cyan-700 dark:text-cyan-400">
+                Travelyn
+              </span>
+              .<br />
               We offer curated tours, expert guides, and seamless booking for
               your next adventure.
             </p>
@@ -28,7 +37,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-foreground hover:text-cyan-500 transition-colors"
+                  className="text-foreground hover:text-cyan-500 dark:text-white dark:hover:text-cyan-400 transition-colors"
                 >
                   <span className="sr-only">Facebook</span>
 
@@ -50,7 +59,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-foreground hover:text-cyan-500 transition-colors"
+                  className="text-foreground hover:text-cyan-500 dark:text-white dark:hover:text-cyan-400 transition-colors"
                 >
                   <span className="sr-only">Instagram</span>
 
@@ -72,7 +81,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-foreground hover:text-cyan-500 transition-colors"
+                  className="text-foreground hover:text-cyan-500 dark:text-white dark:hover:text-cyan-400 transition-colors"
                 >
                   <span className="sr-only">Twitter</span>
 
@@ -88,8 +97,8 @@ const Footer = () => {
               </li>
 
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="text-foreground hover:text-cyan-500 transition-colors"
                 >
                   <span className="sr-only">GitHub</span>
@@ -106,13 +115,13 @@ const Footer = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
 
               <li>
                 <a
                   href="/"
-                  className="text-foreground hover:text-cyan-300 transition-colors"
+                  className="text-foreground hover:text-cyan-300 dark:text-white dark:hover:text-cyan-400 transition-colors"
                 >
                   <span className="sr-only">Dribbble</span>
 
@@ -142,7 +151,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Bangladesh Heritage Tour
                   </Link>
@@ -150,7 +159,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Sundarbans Adventure
                   </Link>
@@ -158,7 +167,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Cox's Bazar Beach Escape
                   </Link>
@@ -166,7 +175,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Sylhet Tea Garden Retreat
                   </Link>
@@ -174,7 +183,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Custom Tour Request
                   </Link>
@@ -189,7 +198,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     About Us
                   </Link>
@@ -197,7 +206,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Our Guides
                   </Link>
@@ -205,7 +214,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Careers
                   </Link>
@@ -220,7 +229,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Contact Us
                   </Link>
@@ -228,7 +237,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     FAQs
                   </Link>
@@ -236,7 +245,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Travel Blog
                   </Link>
@@ -244,7 +253,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Support
                   </Link>
@@ -259,7 +268,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-foreground hover:text-cyan-600 transition-colors"
+                    className="text-foreground hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Terms & Conditions
                   </Link>
@@ -267,7 +276,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Privacy Policy
                   </Link>
@@ -275,7 +284,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-700 hover:text-cyan-600 transition-colors"
+                    className="text-gray-700 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Refund Policy
                   </Link>
@@ -283,7 +292,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="hover:text-cyan-200 transition-colors"
+                    className="text-gray-700 hover:text-cyan-200 dark:text-white dark:hover:text-cyan-400 transition-colors"
                   >
                     Travel Tips
                   </Link>
@@ -293,11 +302,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/20  text-center">
-          <p className="text-xs text-foreground font-medium">
+        <div className="border-t  border-white/20  text-center">
+          <p className="text-xs mt-2 text-foreground font-medium">
             &copy; {new Date().getFullYear()}{" "}
-            <span className="font-bold text-cyan-700">Travelyn</span>. All
-            rights reserved.
+            <span className="font-bold text-cyan-700 dark:text-cyan-400">
+              Travelyn
+            </span>
+            . All rights reserved.
           </p>
         </div>
       </div>
