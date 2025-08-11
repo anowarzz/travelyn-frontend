@@ -10,9 +10,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Password from "@/components/ui/Password";
+import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import { toast } from "sonner";
 import z from "zod";
 
 const registerSchema = z
@@ -38,6 +40,8 @@ const RegisterForm = ({
   className,
   ...props
 }): React.HTMLAttributes<HTMLDivElement> => {
+  const [register] = useRegisterMutation();
+
   const form = useForm({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -48,8 +52,19 @@ const RegisterForm = ({
     },
   });
 
-  const onSubmit = (data) => {
-    console.log("Form submitted with data:", data);
+  const onSubmit = async (data: z.infer<typeof registerSchema>) => {
+    const userInfo = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+    try {
+      const result = await register(userInfo).unwrap();
+      console.log(result);
+      toast.success("User created successfully");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -130,7 +145,7 @@ const RegisterForm = ({
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full text-white">
             Sign up
           </Button>
           <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
