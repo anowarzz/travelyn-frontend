@@ -8,6 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import Password from "@/components/ui/Password";
 import { cn } from "@/lib/utils";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { type FieldValues, type SubmitHandler, useForm } from "react-hook-form";
@@ -72,8 +73,8 @@ const LoginForm = ({
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      type="password"
+             
+                    <Password
                       placeholder="********"
                       {...field}
                       value={field.value || ""}
