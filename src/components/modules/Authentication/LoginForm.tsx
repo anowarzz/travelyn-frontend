@@ -22,15 +22,27 @@ const LoginForm = ({
   const navigate = useNavigate();
   const form = useForm();
   const [login] = useLoginMutation();
+
+  // handle login
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const { email, password } = data;
+
     try {
-      const res = await login(data).unwrap();
+      const res = await login({ email, password }).unwrap();
       console.log(res);
+      toast.success("Login successful");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
 
-      if (err.status === 401) {
+      if (err.data.message === "User does not exist") {
+        return toast.error("User does not exist");
+      }
+
+      if (err.data.message === "Incorrect Password") {
+        return toast.error("Invalid credentials");
+      }
+      if (err.data.message === "User is not verified") {
         toast.error("Your account is not verified");
         navigate("/verify", { state: data.email });
       }
@@ -73,7 +85,6 @@ const LoginForm = ({
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-             
                     <Password
                       placeholder="********"
                       {...field}
