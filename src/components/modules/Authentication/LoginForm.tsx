@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Password from "@/components/ui/Password";
+import config from "@/config";
 import { cn } from "@/lib/utils";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { type FieldValues, type SubmitHandler, useForm } from "react-hook-form";
@@ -108,7 +109,10 @@ const LoginForm = ({
           </span>
         </div>
 
-        <Button variant="outline" className="w-full">
+        <Button 
+        onClick={() => window.open(`${config.baseUrl}/auth/google`)}
+        variant="outline" className="w-full">
+
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
