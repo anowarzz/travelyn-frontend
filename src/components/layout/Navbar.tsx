@@ -11,17 +11,33 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ModeToggle } from "./ModeToggler";
+import {
+  authApi,
+  useLogOutMutation,
+  useUserInfoQuery,
+} from "@/redux/features/auth/auth.api";
+import { useAppDispatch } from "@/redux/hook";
+import { CircleUserRoundIcon } from "lucide-react";
 import { Link } from "react-router";
+import { ModeToggle } from "./ModeToggler";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
-  { href: "/", label: "Home", },
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-
 ];
 
 const Navbar = () => {
+  const { data } = useUserInfoQuery(undefined);
+  const [logOut] = useLogOutMutation();
+  const dispatch = useAppDispatch();
+
+  // user logout
+  const handleLogOut = async () => {
+    await logOut(undefined);
+    dispatch(authApi.util.resetApiState());
+  };
+
   return (
     <header className="border-b px-4 md:px-6 py-2">
       <div className="flex px-4 container mx-auto h-16 items-center justify-between gap-4">
@@ -68,9 +84,7 @@ const Navbar = () => {
                   {navigationLinks.map((link, index) => (
                     <NavigationMenuItem key={index} className="w-full">
                       <NavigationMenuLink asChild className="py-1.5">
-                        <Link to={link.href} >
-                          {link.label}
-                        </Link>
+                        <Link to={link.href}>{link.label}</Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                   ))}
@@ -88,7 +102,10 @@ const Navbar = () => {
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
                   <NavigationMenuItem key={index}>
-                    <NavigationMenuLink asChild  className="text-muted-foreground hover:text-primary py-1.5 font-medium">
+                    <NavigationMenuLink
+                      asChild
+                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                    >
                       <Link to={link.href}>{link.label}</Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
@@ -100,10 +117,23 @@ const Navbar = () => {
         {/* Right side */}
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <Button asChild   className="text-sm">
-            <Link to="/login">Login</Link>
-          </Button>
-          
+          {data?.data?.email && (
+            <div className="m-2 flex gap-4 items-center justify-center">
+              <CircleUserRoundIcon />
+              <Button
+                onClick={handleLogOut}
+                variant="destructive"
+                className="text-sm"
+              >
+                Logout
+              </Button>
+            </div>
+          )}
+          {!data?.data?.email && (
+            <Button asChild className="text-sm">
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
