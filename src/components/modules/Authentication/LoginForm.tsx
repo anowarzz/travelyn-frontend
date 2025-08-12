@@ -30,8 +30,12 @@ const LoginForm = ({
 
     try {
       const res = await login({ email, password }).unwrap();
-      console.log(res);
-      toast.success("Login successful");
+
+      if (res.success) {
+        toast.success("Login successful");
+        navigate("/");
+      }
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
@@ -109,10 +113,11 @@ const LoginForm = ({
           </span>
         </div>
 
-        <Button 
-        onClick={() => window.open(`${config.baseUrl}/auth/google`)}
-        variant="outline" className="w-full">
-
+        <Button
+          onClick={() => window.open(`${config.baseUrl}/auth/google`)}
+          variant="outline"
+          className="w-full"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

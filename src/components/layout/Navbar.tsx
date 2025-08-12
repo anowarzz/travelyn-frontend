@@ -11,9 +11,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useLogOutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api";
+import {
+  authApi,
+  useLogOutMutation,
+  useUserInfoQuery,
+} from "@/redux/features/auth/auth.api";
+import { useAppDispatch } from "@/redux/hook";
 import { CircleUserRoundIcon } from "lucide-react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { ModeToggle } from "./ModeToggler";
 
 // Navigation links array to be used in both desktop and mobile menus
@@ -24,16 +29,14 @@ const navigationLinks = [
 
 const Navbar = () => {
   const { data } = useUserInfoQuery(undefined);
-  const [logOut] = useLogOutMutation()
+  const [logOut] = useLogOutMutation();
+  const dispatch = useAppDispatch();
 
-  const navigate = useNavigate() ;
-
-
-  const handleLogOut = () => {
-    logOut(undefined) ;
-    navigate("/")
-  }
-
+  // user logout
+  const handleLogOut = async () => {
+    await logOut(undefined);
+    dispatch(authApi.util.resetApiState());
+  };
 
   return (
     <header className="border-b px-4 md:px-6 py-2">
