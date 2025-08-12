@@ -12,36 +12,12 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { adminSidebarItems } from "@/routes/adminSidebarItems";
 import { Link } from "react-router";
 
 // This is sample data.
 const data = {
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "#",
-      items: [
-        {
-          title: "Analytics",
-          url: "/admin/analytics",
-        },
-      ],
-    },
-    {
-      title: "Tour Management",
-      url: "#",
-      items: [
-        {
-          title: "Add Tour",
-          url: "/admin/add-tour",
-        },
-        {
-          title: "Add Tour Type",
-          url: "/admin/add-tour-type",
-        },
-      ],
-    },
-  ],
+  navMain: adminSidebarItems,
 };
 
 export function DashboardSidebar({
