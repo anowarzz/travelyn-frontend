@@ -22,11 +22,13 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { cn } from "@/lib/utils";
+import { useSendOtpMutation } from "@/redux/features/auth/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dot } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation } from "react-router";
+import { toast } from "sonner";
 import z from "zod";
 
 const FormSchema = z.object({
@@ -37,9 +39,11 @@ const FormSchema = z.object({
 
 const Verify = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [email] = useState(location.state);
   const [confirmed, setConfirmed] = useState(false);
+  const [sendOtp] = useSendOtpMutation();
+
   // commented for development purpose
   // useEffect(() => {
   //   if (!email) {
@@ -56,12 +60,22 @@ const Verify = () => {
 
   const timer = 1;
 
-  const onSubmit = (data: z.infer<typeof FormSchema>) => {
-    console.log(data);
+  const handleSendOtp = async () => {
+    try {
+      const res = await sendOtp({ email: email }).unwrap();
+
+      if (res.success) {
+        toast.success("OTP sent successfully");
+        setConfirmed(true);
+      }
+    } catch (err) {
+      toast.error("Failed to send OTP");
+      console.log(err);
+    }
   };
 
-  const handleSendOtp = () => {
-    setConfirmed(true);
+  const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    console.log(data);
   };
 
   return (
