@@ -30,7 +30,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Dot } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { toast } from "sonner";
 import z from "zod";
 
@@ -42,12 +42,12 @@ const FormSchema = z.object({
 
 const Verify = () => {
   const location = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [email] = useState(location.state);
   const [confirmed, setConfirmed] = useState(false);
   const [sendOtp] = useSendOtpMutation();
   const [verifyOtp] = useVerifyOtpMutation();
-  const [timer, setTimer] = useState(100);
+  const [timer, setTimer] = useState(5);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -57,26 +57,23 @@ const Verify = () => {
   });
 
   const handleSendOtp = async () => {
-    const toastId = toast.loading("Sending OTP...");
+    const toastId = toast.loading("Sending OTP");
 
     try {
       const res = await sendOtp({ email: email }).unwrap();
 
       if (res.success) {
-        toast.success("OTP sent successfully", { id: toastId });
+        toast.success("OTP Sent !", { id: toastId });
         setConfirmed(true);
+        setTimer(5);
       }
     } catch (err) {
-      toast.error("Failed to send OTP");
       console.log(err);
     }
   };
 
-  // handle otp submission
-
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    const toastId = toast.loading("Verifying OTP...");
-
+    const toastId = toast.loading("Verifying OTP ...");
     const userInfo = {
       email,
       otp: data.pin,
@@ -84,28 +81,33 @@ const Verify = () => {
 
     try {
       const res = await verifyOtp(userInfo).unwrap();
-
       if (res.success) {
-        toast.success("OTP verified successfully", { id: toastId });
+        toast.success("OTP Verified Successfully", { id: toastId });
+        setConfirmed(true);
       }
     } catch (err) {
       console.log(err);
     }
   };
 
-  // commented for development purpose
-  // useEffect(() => {
-  //   if (!email) {
-  //     navigate("/");
-  //   }
-  // }, [email, navigate]);
+  // turned off for development
+  //   useEffect(() => {
+  //     if (!email) {
+  //       navigate("/");
+  //     }
+  //   }, [email]);
 
   useEffect(() => {
+    if (!email || !confirmed) {
+      return;
+    }
+
     const timerId = setInterval(() => {
-      if (email && confirmed) {
-        setTimer((prev) => prev - 1);
-      }
+      setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+      console.log("Tick");
     }, 1000);
+
+    return () => clearInterval(timerId);
   }, [email, confirmed]);
 
   return (
@@ -161,7 +163,7 @@ const Verify = () => {
                           variant="link"
                           disabled={timer !== 0}
                           className={cn("p-0 m-0", {
-                            "cursor-pointer": timer === 0,
+                            "cursor-pointer underline": timer === 0,
                             "text-gray-200": timer !== 0,
                           })}
                         >
