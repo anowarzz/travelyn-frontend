@@ -22,10 +22,13 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { cn } from "@/lib/utils";
-import { useSendOtpMutation } from "@/redux/features/auth/auth.api";
+import {
+  useSendOtpMutation,
+  useVerifyOtpMutation,
+} from "@/redux/features/auth/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dot } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router";
 import { toast } from "sonner";
@@ -43,13 +46,8 @@ const Verify = () => {
   const [email] = useState(location.state);
   const [confirmed, setConfirmed] = useState(false);
   const [sendOtp] = useSendOtpMutation();
-
-  // commented for development purpose
-  // useEffect(() => {
-  //   if (!email) {
-  //     navigate("/");
-  //   }
-  // }, [email, navigate]);
+  const [verifyOtp] = useVerifyOtpMutation();
+  const [timer, setTimer] = useState(100);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -58,14 +56,14 @@ const Verify = () => {
     },
   });
 
-  const timer = 1;
-
   const handleSendOtp = async () => {
+    const toastId = toast.loading("Sending OTP...");
+
     try {
       const res = await sendOtp({ email: email }).unwrap();
 
       if (res.success) {
-        toast.success("OTP sent successfully");
+        toast.success("OTP sent successfully", { id: toastId });
         setConfirmed(true);
       }
     } catch (err) {
@@ -74,9 +72,41 @@ const Verify = () => {
     }
   };
 
-  const onSubmit = (data: z.infer<typeof FormSchema>) => {
-    console.log(data);
+  // handle otp submission
+
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    const toastId = toast.loading("Verifying OTP...");
+
+    const userInfo = {
+      email,
+      otp: data.pin,
+    };
+
+    try {
+      const res = await verifyOtp(userInfo).unwrap();
+
+      if (res.success) {
+        toast.success("OTP verified successfully", { id: toastId });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  // commented for development purpose
+  // useEffect(() => {
+  //   if (!email) {
+  //     navigate("/");
+  //   }
+  // }, [email, navigate]);
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      if (email && confirmed) {
+        setTimer((prev) => prev - 1);
+      }
+    }, 1000);
+  }, [email, confirmed]);
 
   return (
     <div className="grid place-content-center h-screen">
@@ -135,9 +165,11 @@ const Verify = () => {
                             "text-gray-200": timer !== 0,
                           })}
                         >
-                          Resent OPT:{" "}
-                        </Button>{" "}
-                        {timer}
+                          Resent OPT:
+                        </Button>
+                        <span className="font-medium text-fuchsia-600 ml-2">
+                          {timer}
+                        </span>
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
