@@ -11,8 +11,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
-import { Link } from "react-router";
+import { useLogOutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api";
+import { CircleUserRoundIcon } from "lucide-react";
+import { Link, useNavigate } from "react-router";
 import { ModeToggle } from "./ModeToggler";
 
 // Navigation links array to be used in both desktop and mobile menus
@@ -23,8 +24,16 @@ const navigationLinks = [
 
 const Navbar = () => {
   const { data } = useUserInfoQuery(undefined);
+  const [logOut] = useLogOutMutation()
 
-  console.log(data);
+  const navigate = useNavigate() ;
+
+
+  const handleLogOut = () => {
+    logOut(undefined) ;
+    navigate("/")
+  }
+
 
   return (
     <header className="border-b px-4 md:px-6 py-2">
@@ -105,9 +114,23 @@ const Navbar = () => {
         {/* Right side */}
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <Button asChild className="text-sm">
-            <Link to="/login">Login</Link>
-          </Button>
+          {data?.data?.email && (
+            <div className="m-2 flex gap-4 items-center justify-center">
+              <CircleUserRoundIcon />
+              <Button
+                onClick={handleLogOut}
+                variant="destructive"
+                className="text-sm"
+              >
+                Logout
+              </Button>
+            </div>
+          )}
+          {!data?.data?.email && (
+            <Button asChild className="text-sm">
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
