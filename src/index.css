@@ -51,6 +51,18 @@
   --color-myGreen-800: #0a7135;
   --color-myGreen-900: #0a5d2e;
   --color-myGreen-950: #003417;
+
+  --color-myRed-50: #fff5ec;
+  --color-myRed-100: #ffe9d4;
+  --color-myRed-200: #ffcfa7;
+  --color-myRed-300: #ffac6f;
+  --color-myRed-400: #ff7e35;
+  --color-myRed-500: #ff5b0e;
+  --color-myRed-600: #e73c04;
+  --color-myRed-700: #c82b06;
+  --color-myRed-800: #9f240d;
+  --color-myRed-900: #80200e;
+  --color-myRed-950: #450d05;
 }
 
 :root {
