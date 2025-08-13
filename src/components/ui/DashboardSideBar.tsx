@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import Logo from "@/assets/logos/Logo";
 import {
   Sidebar,
   SidebarContent,
@@ -28,9 +29,9 @@ export function DashboardSidebar({
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <h3 className="text-xl md:text-2xl font-medium text-green-500  pl-3">
-          Travelyn
-        </h3>
+        <Link className="pl-2" to="/">
+          <Logo />
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}

@@ -1,4 +1,4 @@
-import footerLogo from "@/assets/logos/travelyn-square-logo.jpg";
+import Logo from "@/assets/logos/Logo";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -18,11 +18,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-10   lg:grid-cols-3">
           <div>
             <div className="flex items-center gap-3">
-              <img
-                src={footerLogo}
-                alt="Travelyn Footer Logo"
-                className="w-48 h-auto drop-shadow-md"
-              />
+              <Logo />
             </div>
             <p className="mt-4 max-w-xs text-muted-foreground">
               Explore, dream, and discover with{" "}
