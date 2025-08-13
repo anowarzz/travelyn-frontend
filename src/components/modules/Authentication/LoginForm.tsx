@@ -101,7 +101,10 @@ const LoginForm = ({
               )}
             />
 
-            <Button type="submit" className="w-full text-white">
+            <Button
+              type="submit"
+              className="w-full text-white bg-myGreen-600 hover:bg-myGreen-700"
+            >
               Login
             </Button>
           </form>

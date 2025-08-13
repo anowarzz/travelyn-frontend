@@ -1,5 +1,5 @@
 import loginImage from "@/assets/images/login-image.jpg";
-import travelynLogo from "@/assets/logos/travelyn-nav-logo.jpg";
+import Logo from "@/assets/logos/Logo";
 import LoginForm from "@/components/modules/Authentication/LoginForm";
 
 const Login = () => {
@@ -7,7 +7,7 @@ const Login = () => {
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
-          <img src={travelynLogo} className="h-12" alt="Travelyn Logo" />
+          <Logo />
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">

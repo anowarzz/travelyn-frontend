@@ -151,7 +151,7 @@ const RegisterForm = ({
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full text-white">
+            <Button type="submit" className="w-full text-white bg-myGreen-600 hover:bg-myGreen-700">
               Submit
             </Button>
           </form>

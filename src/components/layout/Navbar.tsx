@@ -126,14 +126,14 @@ const Navbar = () => {
               <Button
                 onClick={handleLogOut}
                 variant="destructive"
-                className="text-sm"
+                className="text-sm "
               >
                 Logout
               </Button>
             </div>
           )}
           {!data?.data?.email && (
-            <Button asChild className="text-sm">
+            <Button asChild className="text-sm text-white ">
               <Link to="/login">Login</Link>
             </Button>
           )}

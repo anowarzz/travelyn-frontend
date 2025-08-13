@@ -14,7 +14,6 @@ const Footer = () => {
         className="absolute inset-0 hidden dark:block bg-[radial-gradient(#ffffff0d_1px,#0f172a_1px)] bg-[size:16px_16px] pointer-events-none"
         aria-hidden="true"
       ></div>
-      <div className="relative mx-auto max-w-screen-xl space-y-10 px-4 py-8 sm:px-6 lg:space-y-16 lg:px-4">
         <div className="grid grid-cols-1 gap-10   lg:grid-cols-3">
           <div>
             <div className="flex items-center gap-3">
@@ -22,7 +21,7 @@ const Footer = () => {
             </div>
             <p className="mt-4 max-w-xs text-muted-foreground">
               Explore, dream, and discover with{" "}
-              <span className="font-bold text-cyan-700 dark:text-cyan-400">
+              <span className="font-bold text-[var(--myGreen)]">
                 Travelyn
               </span>
               .<br />
@@ -301,13 +300,12 @@ const Footer = () => {
         <div className="border-t  border-white/20  text-center">
           <p className="text-xs mt-2 text-foreground font-medium">
             &copy; {new Date().getFullYear()}{" "}
-            <span className="font-bold text-cyan-700 dark:text-cyan-400">
+            <span className="font-bold">
               Travelyn
             </span>
             . All rights reserved.
           </p>
         </div>
-      </div>
     </footer>
   );
 };
