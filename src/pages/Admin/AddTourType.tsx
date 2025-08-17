@@ -15,7 +15,6 @@ export default function AddTourType() {
   const { data } = useGetTourTypesQuery(undefined);
 
   console.log(data);
-  
 
   return (
     <div className="w-full max-w-7xl mx-auto px-5">
@@ -38,7 +37,11 @@ export default function AddTourType() {
                   {item?.name}
                 </TableCell>
                 <TableCell>
-                  <Button size="sm" variant="destructive"  className="hover:bg-myRed-800">
+                  <Button
+                    size="sm"
+                    variant="destructive"
+                    className="hover:bg-myRed-800"
+                  >
                     <Trash2 />
                   </Button>
                 </TableCell>
