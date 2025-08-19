@@ -19,7 +19,6 @@ interface IProps {
 const DeleteConfirmation = ({ children, onConfirm }: IProps) => {
   const handleConfirm = () => {
     onConfirm();
-    console.log("confirmed click");
   };
 
   return (

@@ -1,3 +1,4 @@
+import AddDivision from "@/pages/Admin/AddDivision";
 import AddTourType from "@/pages/Admin/AddTourType";
 import type { ISidebarItem } from "@/types";
 import { lazy } from "react";
@@ -30,9 +31,9 @@ export const adminSidebarItems: ISidebarItem[] = [
         Component: AddTourType,
       },
       {
-        title: "New World",
-        url: "/admin/add-tour",
-        Component: AddTour,
+        title: "Add Division",
+        url: "/admin/add-division",
+        Component: AddDivision,
       },
     ],
   },
