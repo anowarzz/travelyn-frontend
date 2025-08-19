@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetDivisionsQuery } from "@/redux/features/division/division.api";
+import type { IDivision } from "@/types";
 import { Trash2 } from "lucide-react";
 
 const AddDivision = () => {
@@ -30,7 +31,7 @@ const AddDivision = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((item) => (
+            {data?.map((item: IDivision) => (
               <TableRow key={item._id}>
                 <TableCell className="font-medium w-full">
                   {item?.name}

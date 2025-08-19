@@ -19,3 +19,16 @@ export interface ISidebarItem {
 }
 
 export type TRole = "SUPER_ADMIN" | "ADMIN" | "USER" | "GUIDE";
+
+export interface ITourType {
+  name: string;
+  _id: string;
+}
+
+export interface IDivision {
+  _id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  thumbnail: string;
+}

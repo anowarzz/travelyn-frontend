@@ -13,6 +13,7 @@ import {
   useGetTourTypesQuery,
   useRemoveTourTypeMutation,
 } from "@/redux/features/tour/tour.api";
+import type { ITourType } from "@/types";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -48,8 +49,8 @@ export default function AddTourType() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((item: { name: string; _id: string }) => (
-              <TableRow>
+            {data?.map((item: ITourType) => (
+              <TableRow key={item._id}>
                 <TableCell className="font-medium w-full">
                   {item?.name}
                 </TableCell>
