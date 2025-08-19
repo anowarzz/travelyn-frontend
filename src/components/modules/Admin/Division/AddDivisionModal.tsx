@@ -48,8 +48,10 @@ export function AddDivisionModal() {
       const res = await addDivision(formData).unwrap();
       toast.success("Division Added");
       setOpen(false);
+      form.reset();
     } catch (err) {
       console.error(err);
+      toast.error(err.data?.message);
     }
   };
 
