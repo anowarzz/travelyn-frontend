@@ -57,6 +57,7 @@ export default function AddTourType() {
                 <TableCell>
                   <DeleteConfirmation
                     onConfirm={() => handleRemoveTourType(item._id)}
+                    itemType="tour type"
                   >
                     <Button
                       size="sm"

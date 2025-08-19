@@ -14,9 +14,10 @@ import type { ReactNode } from "react";
 interface IProps {
   children: ReactNode;
   onConfirm: () => void;
+  itemType: string
 }
 
-const DeleteConfirmation = ({ children, onConfirm }: IProps) => {
+const DeleteConfirmation = ({ children, onConfirm, itemType }: IProps) => {
   const handleConfirm = () => {
     onConfirm();
   };
@@ -28,8 +29,7 @@ const DeleteConfirmation = ({ children, onConfirm }: IProps) => {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the tour
-            type.
+            This action cannot be undone. This will permanently delete the {itemType}.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

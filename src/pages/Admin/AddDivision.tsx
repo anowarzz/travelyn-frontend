@@ -1,3 +1,4 @@
+import DeleteConfirmation from "@/components/DeleteConfirmation";
 import { AddDivisionModal } from "@/components/modules/Admin/Division/AddDivisionModal";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,12 +9,31 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetDivisionsQuery } from "@/redux/features/division/division.api";
+import {
+  useGetDivisionsQuery,
+  useRemoveDivisionMutation,
+} from "@/redux/features/division/division.api";
 import type { IDivision } from "@/types";
 import { Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 const AddDivision = () => {
   const { data } = useGetDivisionsQuery(undefined);
+  const [removeDivision] = useRemoveDivisionMutation();
+
+  // remove division
+  const handleRemoveDivision = async (divisionId: string) => {
+    const toastId = toast.loading("Removing division...");
+    try {
+      const res = await removeDivision(divisionId).unwrap();
+      if (res.success) {
+        toast.success("Division Removed", { id: toastId });
+      }
+    } catch (err) {
+      toast.error("Error removing division", { id: toastId });
+      console.log(err);
+    }
+  };
 
   return (
     <div className="w-full max-w-7xl mx-auto px-5">
@@ -48,9 +68,14 @@ const AddDivision = () => {
                   )}
                 </TableCell>
                 <TableCell className="text-right">
-                  <Button size="sm" variant="destructive">
-                    <Trash2 />
-                  </Button>
+                  <DeleteConfirmation
+                    onConfirm={() => handleRemoveDivision(item._id)}
+                    itemType="division"
+                  >
+                    <Button size="sm" variant="destructive">
+                      <Trash2 />
+                    </Button>
+                  </DeleteConfirmation>
                 </TableCell>
               </TableRow>
             ))}
